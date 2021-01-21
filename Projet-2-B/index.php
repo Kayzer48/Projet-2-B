@@ -1,8 +1,7 @@
 <?php
 //on inclut le fichier connect.php qui nous permet de nous connecter à la base de données
 require_once('connect.php');
-$sql='SELECT*FROM `etudiants`';
-
+$sql='SELECT * FROM `etudiants` INNER JOIN `matieres` ON `matieres`.`matiere_id`= `etudiants`.`id_matieres`';
 //on prépare la requête
 $query=$db->prepare($sql);
 
@@ -44,7 +43,9 @@ require_once('close.php');
                             <th>date de naissance</th>
                             <th>date du jour</th>
                             <th>age</th>
-                            <th>id matières</th>    
+                            <th>id matières</th>
+                            <th>matière id</th>   
+                            <th>nom de la matière</th>  
                         </thead>
                         <tbody>
                             <?php   
@@ -62,6 +63,8 @@ require_once('close.php');
                                     <td><?= $test['date_jour'] ?></td>
                                     <td><?= $test['age'] ?></td>
                                     <td><?= $test['id_matieres'] ?></td>
+                                    <td><?= $test['matiere_id'] ?></td>
+                                    <td><?= $test['nom_matiere'] ?></td>
                                 </tr>    
                             <?php 
                               }    
